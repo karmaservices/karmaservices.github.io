@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Karma Services</title>
+</head>
+
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        body {
+            padding-left: 20vw;
+            padding-right: 20vw;
+            padding-top: 10vh;
+            line-height: 35px;
+        }
+        
+        code {
+            background: #ccc;
+            border-radius: 5px;
+            font-size: 90%;
+            padding: 5px;
+        }
+
+        td:first-child{
+            font-weight: bold;
+        }
+
+        input, select{
+            width: 30%;
+            padding:10px;
+            border-style:solid;
+            border-width:1px;
+            border-color: #ccc;
+        }
+
+        .line *{
+            margin-right: 20px;
+        }
+
+        table, th, td{
+            border-collapse: collapse;
+            border-style:solid;
+            border-width:1px;
+            border-color: #ccc;
+            padding: 10px;
+        }
+
+
+    </style>
+
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+    
+
+    <h1>Karma Services</h1>
+    <p>Karma, straight to your Reddit account quickly and inexpensively.</p>
+    <p>Pricing:</p>
+
+    <table style="width:100%">
+        <tbody>
+            <tr>
+                <td>$5</td>
+                <td>200 Karma</td>
+            </tr>
+            <tr>
+                <td>$10</td>
+                <td>500 Karma</td>
+            </tr>
+            <tr>
+                <td>$15</td>
+                <td>1000 Karma</td>
+            </tr>
+            <tr>
+                <td>$30</td>
+                <td>3000 Karma</td>
+            </tr>
+            <tr>
+                <td>$100</td>
+                <td>Double your current Karma!*</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Unfortunately, we only take BTC at this time.</p>
+
+    <p>*The price for this service is so high due to the uncertainty in the starting Karma of your account. If you have a high amount of starting Karma on your account, the service may take a while to be delivered.</p>
+
+    <div class="line">
+        <input id="username" type="text" placeholder="your reddit username">
+        <select id="type">
+          <option value="5">200 Karma</option>
+          <option value="10">500 Karma</option>
+          <option value="15">1000 Karma</option>
+          <option value="30">3000 Karma</option>
+          <option value="100">Double Karma</option>
+        </select>
+        <a href="submit.html">submit</a>
+    </div>
+
+    <script>
+        url = 'https://script.google.com/macros/s/AKfycbzbrzsbrHSVquxgnKR1FyrKc2d1SGjmvF4zTI56lxKmnD0zzZyX/exec'
+
+        $('a').on('click', function(e) {
+          e.preventDefault();
+          var jqxhr = $.ajax({
+            url: url,
+            method: "GET",
+            dataType: "json",
+            data: {"username":$( "#username" ).val(), "type": $( "#type" ).val()},
+            success:function(data) {
+                window.location = "submit.html"
+            }
+          }).success()
+        })
+    </script>
+
+</body>
+
+</html>
